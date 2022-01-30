@@ -14,11 +14,11 @@ public class GameTests
     // game should be initialised with
     // - an ID
     // - two players
-    // - an 'Arena Created' event
+    // - an Arena
     // - the game should be in progress
-    Assert.NotNull(game.Id);
+    Assert.NotEqual(Guid.Empty, game.Id);
     Assert.Equal(2, game.PlayerCount);
-    game.ArenaCreated += (o, a) => Console.WriteLine(o?.ToString());
+    Assert.NotNull(game.Arena);
     Assert.True(game.Active);
   }
 }

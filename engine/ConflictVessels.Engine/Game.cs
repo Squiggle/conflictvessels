@@ -13,17 +13,23 @@ public class Game
   /// <summary>Total player count</summary>
   public int PlayerCount { get; init; }
 
-  /// <summary>Monitor changes to the Game's Arena</summary>
-  public event EventHandler? ArenaCreated;
+  /// <summary>Arena for the Game</summary>
+  public Arena Arena { get; init; }
+
+  private Game()
+  {
+    // defaults can be overridden via params if needed
+    Id = Guid.NewGuid();
+    Active = true;
+    PlayerCount = 2;
+    Arena = new Arena();
+  }
 
   /// <summary>Create a new Game with defaults</summary>
   public static Game Create()
   {
-    return new Game
-    {
-      Id = Guid.NewGuid(),
-      Active = true,
-      PlayerCount = 2
-    };
+    // factory method
+    // load and set defaults here
+    return new Game();
   }
 }
