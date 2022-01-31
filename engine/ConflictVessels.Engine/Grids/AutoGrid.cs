@@ -10,7 +10,7 @@ public class AutoGrid : Grid
     foreach (var vessel in Vessels)
     {
       // vertical or horizontal?
-      var orientation = new Random().Next(0, 1) == 0
+      var orientation = new Random().Next(0, 2) == 0
         ? VesselOrientation.Horizontal
         : VesselOrientation.Vertical;
       // available grid space, considering the size of the vessel

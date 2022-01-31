@@ -4,7 +4,7 @@ public class Vessel
 {
   public int Size { get; init; }
 
-  internal Vessel(int size)
+  public Vessel(int size)
   {
     Size = size;
   }

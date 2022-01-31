@@ -17,7 +17,7 @@ public class Arena
 
   public IObservable<bool> ObservableReady => readySubject;
 
-  internal Arena(params Grid[] grids)
+  public Arena(params Grid[] grids)
   {
     Grids = grids.ToList();
     Ready = grids.All(grid => grid.Ready);
