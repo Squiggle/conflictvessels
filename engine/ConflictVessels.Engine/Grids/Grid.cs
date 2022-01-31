@@ -23,25 +23,25 @@ public class Grid
   private readonly List<VesselGridPlacement> vessels;
   public ReadOnlyCollection<VesselGridPlacement> Vessels => vessels.AsReadOnly();
 
-  internal Grid(params Vessel[] vessels)
+  public IEnumerable<Coords> Coords()
   {
-    Width = 10;
-    Height = 10;
+    for (var x = 0; x < Width; x++)
+    {
+      for (var y = 0; y < Height; y++)
+      {
+        yield return new Coords(x, y);
+      }
+    }
+  }
+
+  internal Grid(int width, int height, params Vessel[] vessels)
+  {
+    Width = width;
+    Height = height;
     this.vessels = vessels.Select(v => new VesselGridPlacement(v)).ToList();
   }
 
-  /// <summary>Create a default grid with a selection of vessels</summary>
-  public static Grid Default()
-  {
-    return new Grid(new Vessel[] {
-      new Vessel(2),
-      new Vessel(3),
-      new Vessel(3),
-      new Vessel(4),
-      new Vessel(5)
-    });
-  }
-
+  /// <summary>Place a vessel on the board</summary>
   public void Place(Vessel vessel, int x, int y, VesselOrientation orientation)
   {
     var placement = vessels.SingleOrDefault(v => v.Vessel == vessel);
@@ -57,13 +57,16 @@ public class Grid
       Ready = true;
     }
   }
-}
 
-public class ReadyChangedEventArgs : EventArgs
-{
-  public bool Ready { get; init; }
-  internal ReadyChangedEventArgs(bool ready)
+  /// <summary>Create a default grid with a selection of vessels</summary>
+  public static Grid Default()
   {
-    Ready = ready;
+    return new Grid(10, 10, new Vessel[] {
+      new Vessel(2),
+      new Vessel(3),
+      new Vessel(3),
+      new Vessel(4),
+      new Vessel(5)
+    });
   }
 }

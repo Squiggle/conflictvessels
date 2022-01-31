@@ -1,15 +1,16 @@
+using ConflictVessels.Engine.Grids;
+
 namespace ConflictVessels.Engine.Vessels;
 
 public class VesselPosition
 {
+  public Coords Coords { get; init; }
+
+  public VesselOrientation Orientation { get; init; }
+
   public VesselPosition(int x, int y, VesselOrientation orientation)
   {
-    X = x;
-    Y = y;
+    Coords = new Coords(x, y);
     Orientation = orientation;
   }
-
-  public int X { get; init; }
-  public int Y { get; init; }
-  public VesselOrientation Orientation { get; init; }
 }

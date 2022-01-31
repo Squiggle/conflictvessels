@@ -29,6 +29,7 @@ public class ArenaTests
 
   public class TestGrid : Grid
   {
+    public TestGrid() : base(10, 10) { }
     public bool ReadyUp() => Ready = true;
   }
 }

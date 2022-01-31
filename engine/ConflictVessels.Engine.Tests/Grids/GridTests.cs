@@ -10,7 +10,7 @@ public class GridTests
   [Fact]
   public void Grid_created_with_10x10()
   {
-    var grid = new Grid();
+    var grid = Grid.Default();
     Assert.Equal(10, grid.Width);
     Assert.Equal(10, grid.Height);
   }
@@ -27,7 +27,7 @@ public class GridTests
   public void Placing_all_vessels_raises_ready_event()
   {
     // a basic grid with a tiny boat
-    var grid = new Grid(new Vessel(1));
+    var grid = new Grid(10, 10, new Vessel(1));
     Assert.False(grid.Ready);
 
     var vessel = grid.Vessels[0].Vessel;
@@ -37,5 +37,17 @@ public class GridTests
     grid.Place(vessel, 0, 0, VesselOrientation.Vertical);
     Assert.True(grid.Ready);
     Assert.True(subscribedValue);
+  }
+
+  [Fact]
+  public void Grid_supplies_list_of_all_coords()
+  {
+    var grid = new Grid(2, 2);
+    Assert.Collection(grid.Coords(),
+      c => Assert.Equal(new Coords(0, 0), c),
+      c => Assert.Equal(new Coords(0, 1), c),
+      c => Assert.Equal(new Coords(1, 0), c),
+      c => Assert.Equal(new Coords(1, 1), c)
+    );
   }
 }

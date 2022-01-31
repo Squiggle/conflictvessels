@@ -63,7 +63,7 @@ public class Game
   /// </summary>
   public static Game Default()
   {
-    return new Game(new Arena(), new Player(), new Player());
+    return new Game(Arena.Default(), new Player(), new Player());
   }
 
   /// <summary>A Player can abandon the game</summary>

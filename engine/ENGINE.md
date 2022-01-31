@@ -23,9 +23,10 @@
 # Events
 
 - Game
-  - ArenaCreated (begin phase 1)
-  - BattleCommensed (begin phase 2)
-- ActionAvailable
-- SquareHit
-- VesselSunk
-- Victory
+  - Phases
+  - Victory
+- Grid
+  - Bombarded
+  - VesselSunk
+- Player
+  - ActionAvailable

@@ -4,5 +4,5 @@ namespace ConflictVessels.Engine.Grids;
 
 public class ManualGrid : Grid
 {
-  public ManualGrid(params Vessel[] vessels) : base(vessels) { }
+  public ManualGrid(int width, int height, params Vessel[] vessels) : base(width, height, vessels) { }
 }

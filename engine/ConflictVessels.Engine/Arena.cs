@@ -25,6 +25,6 @@ public class Arena
 
   public static Arena Default()
   {
-    return new Arena(new Grid(), new Grid());
+    return new Arena(Grid.Default(), Grid.Default());
   }
 }
