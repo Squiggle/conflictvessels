@@ -1,4 +1,4 @@
-namespace ConflictVessels.Engine;
+namespace ConflictVessels.Engine.Game;
 
 public enum GamePhase
 {

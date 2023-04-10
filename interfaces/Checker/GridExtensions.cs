@@ -15,10 +15,10 @@ namespace Checker
 
       var vesselCoords = grid.Vessels.SelectMany(v => v.Coords).ToList();
       var square = (Coords coords) => vesselCoords.Contains(coords)
-        ? "V"
-        : " ";
+        ? "V "
+        : "  ";
 
-      $" {string.Join("", Enumerable.Range(0, grid.Width).Select(_ => "_"))}".Out();
+      $" {string.Join("", Enumerable.Range(0, grid.Width).Select(_ => "__"))}".Out();
       foreach (var row in grid.Coords().Chunk(grid.Width))
       {
         $"|{string.Join("", row.Select(square))}".Out();
