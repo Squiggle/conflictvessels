@@ -38,10 +38,10 @@ public class AutoGrid : Grid
 
 public class GridFullException : Exception
 {
-  public Vessel VesselThatCannotFit { get; init; }
+  public IPlaceableItem VesselThatCannotFit { get; init; }
   public VesselOrientation Orientation { get; init; }
 
-  public GridFullException(Vessel vessel, VesselOrientation orientation) : base()
+  public GridFullException(IPlaceableItem vessel, VesselOrientation orientation) : base()
   {
     VesselThatCannotFit = vessel;
   }

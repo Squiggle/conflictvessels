@@ -5,9 +5,9 @@ namespace ConflictVessels.Engine.Phases;
 
 public class StartPhase : IGamePhase
 {
-    private readonly IPlayerBoard[] _playerBoards;
+    private readonly IPlayerPhaseState[] _playerBoards;
 
-    public StartPhase(params IPlayerBoard[] playerBoards)
+    public StartPhase(params IPlayerPhaseState[] playerBoards)
     {
         _playerBoards = playerBoards;
     }

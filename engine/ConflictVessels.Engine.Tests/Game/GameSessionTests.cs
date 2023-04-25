@@ -47,13 +47,12 @@ public partial class GameSessionTests
         // arrange
         var phase = new TestPhase("phase");
         var game = new GameSession(phase);
-        var completed = false;
-        game.Active.Subscribe(active => completed = !active);
+        var active = game.Active.Observe();
 
         // act
         phase.Completed();
 
         // assert
-        Assert.True(completed);
+        Assert.False(active.Value);
     }
 }

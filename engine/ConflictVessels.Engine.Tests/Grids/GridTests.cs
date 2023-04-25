@@ -1,53 +1,44 @@
-using System;
 using ConflictVessels.Engine.Grids;
 using ConflictVessels.Engine.Vessels;
+using System.Linq;
 using Xunit;
 
 namespace ConflictVessels.Engine.Tests.Grids;
 
 public class GridTests
 {
-  [Fact]
-  public void Grid_created_with_10x10()
-  {
-    var grid = Grid.Default();
-    Assert.Equal(10, grid.Width);
-    Assert.Equal(10, grid.Height);
-  }
+    [Fact]
+    public void Grid_allows_placing_vessels()
+    {
+        var testVessel = new TestVessel();
+        var grid = new Grid(10, 10, testVessel);
+        grid.Place(testVessel, 0, 0, VesselOrientation.Horizontal);
 
-  [Fact]
-  public void Default_grid_created_with_5_unplaced_vessels()
-  {
-    var grid = Grid.Default();
-    Assert.Equal(5, grid.Vessels.Count);
-    Assert.All(grid.Vessels, v => Assert.Null(v.Position));
-  }
+        Assert.Same(testVessel, grid.Vessels.First().Vessel);
+    }
 
-  [Fact]
-  public void Placing_all_vessels_raises_ready_event()
-  {
-    // a basic grid with a tiny boat
-    var grid = new Grid(10, 10, new Vessel(1));
-    Assert.False(grid.Ready);
+    [Fact]
+    public void Grid_is_only_ready_once_all_vessels_placed()
+    {
+        var testVessel = new TestVessel();
+        var grid = new Grid(10, 10, testVessel);
+        var ready = grid.Ready.Observe();
 
-    var vessel = grid.Vessels[0].Vessel;
+        Assert.False(ready.Value);
+        grid.Place(testVessel, 0, 0, VesselOrientation.Horizontal);
 
-    var subscribedValue = false;
-    grid.ObservableReady.Subscribe(x => subscribedValue = x);
-    grid.Place(vessel, 0, 0, VesselOrientation.Vertical);
-    Assert.True(grid.Ready);
-    Assert.True(subscribedValue);
-  }
+        Assert.True(ready.Value);
+    }
 
-  [Fact]
-  public void Grid_supplies_list_of_all_coords()
-  {
-    var grid = new Grid(2, 2);
-    Assert.Collection(grid.Coords(),
-      c => Assert.Equal(new Coords(0, 0), c),
-      c => Assert.Equal(new Coords(0, 1), c),
-      c => Assert.Equal(new Coords(1, 0), c),
-      c => Assert.Equal(new Coords(1, 1), c)
-    );
-  }
+    [Fact]
+    public void Grid_supplies_list_of_all_coords()
+    {
+        var grid = new Grid(2, 2);
+        Assert.Collection(grid.Coords(),
+          c => Assert.Equal(new Coords(0, 0), c),
+          c => Assert.Equal(new Coords(0, 1), c),
+          c => Assert.Equal(new Coords(1, 0), c),
+          c => Assert.Equal(new Coords(1, 1), c)
+        );
+    }
 }

@@ -12,18 +12,14 @@ public class StartPhaseTests
         var board1 = new TestPlayerBoard();
         var board2 = new TestPlayerBoard();
         var startPhase = new StartPhase(board1, board2);
-        var ready = false;
-        startPhase.PhaseState.Subscribe(r => {
-            ready = r;
-            Console.WriteLine($"Ready: {r}");
-        });
+        var ready = startPhase.PhaseState.Observe();
 
-        Assert.False(ready, "Start phase should begin unready");
+        Assert.False(ready.Value, "Start phase should begin unready");
 
         board1.ReadyUp();
-        Assert.False(ready, "Start phase should not be ready until all boards are ready");
+        Assert.False(ready.Value, "Start phase should not be ready until all boards are ready");
 
         board2.ReadyUp();
-        Assert.True(ready, "Start phase should be ready when all boards are ready");
+        Assert.True(ready.Value, "Start phase should be ready when all boards are ready");
     }
 }

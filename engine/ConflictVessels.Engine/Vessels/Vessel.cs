@@ -1,6 +1,6 @@
 namespace ConflictVessels.Engine.Vessels;
 
-public class Vessel
+public class Vessel : IPlaceableItem
 {
   public int Size { get; init; }
   public int Symbol { get; init; }

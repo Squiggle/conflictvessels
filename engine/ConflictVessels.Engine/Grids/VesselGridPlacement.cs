@@ -1,13 +1,16 @@
+using System.Reactive.Subjects;
 using ConflictVessels.Engine.Vessels;
 
 namespace ConflictVessels.Engine.Grids;
 
 public class VesselGridPlacement
 {
-  public Vessel Vessel { get; init; }
+  private readonly BehaviorSubject<bool> placedBehaviourSubject = new BehaviorSubject<bool>(false);
+  public IObservable<bool> Placed => placedBehaviourSubject;
+  public IPlaceableItem Vessel { get; init; }
   public VesselPosition? Position { get; private set; }
 
-  public VesselGridPlacement(Vessel vessel)
+  public VesselGridPlacement(IPlaceableItem vessel)
   {
     Vessel = vessel;
     Position = null;
@@ -16,6 +19,7 @@ public class VesselGridPlacement
   public void Place(int x, int y, VesselOrientation orientation)
   {
     Position = new VesselPosition(x, y, orientation);
+    placedBehaviourSubject.OnNext(true);
   }
 
   public IEnumerable<Coords> Coords
