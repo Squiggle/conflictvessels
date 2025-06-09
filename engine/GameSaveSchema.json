@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Conflict Vessels Game Save Schema",
+  "type": "object",
+  "required": ["id", "phase", "arena", "players"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the game."
+    },
+    "phase": {
+      "type": "string",
+      "enum": ["Setup", "Action", "Ended"],
+      "description": "Current phase of the game."
+    },
+    "arena": {
+      "$ref": "#/definitions/arena"
+    },
+    "players": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/player" },
+      "minItems": 2,
+      "description": "List of players in the game."
+    },
+    "playerActions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "History of player actions (optional, may be empty)."
+    }
+  },
+  "definitions": {
+    "arena": {
+      "type": "object",
+      "required": ["grids"],
+      "properties": {
+        "grids": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/grid" },
+          "minItems": 2,
+          "description": "Grids for each player."
+        }
+      }
+    },
+    "player": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier for the player."
+        }
+      }
+    },
+    "grid": {
+      "type": "object",
+      "required": ["width", "height", "vessels"],
+      "properties": {
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 },
+        "vessels": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/vesselGridPlacement" },
+          "description": "Vessels placed on this grid."
+        }
+      }
+    },
+    "vesselGridPlacement": {
+      "type": "object",
+      "required": ["vessel", "position"],
+      "properties": {
+        "vessel": { "$ref": "#/definitions/vessel" },
+        "position": { "$ref": "#/definitions/vesselPosition" }
+      }
+    },
+    "vessel": {
+      "type": "object",
+      "required": ["size"],
+      "properties": {
+        "size": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "vesselPosition": {
+      "type": "object",
+      "required": ["coords", "orientation"],
+      "properties": {
+        "coords": { "$ref": "#/definitions/coords" },
+        "orientation": {
+          "type": "string",
+          "enum": ["Vertical", "Horizontal"],
+          "description": "Orientation of the vessel."
+        }
+      }
+    },
+    "coords": {
+      "type": "object",
+      "required": ["x", "y"],
+      "properties": {
+        "x": { "type": "integer", "minimum": 0 },
+        "y": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}
