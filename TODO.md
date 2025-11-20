@@ -1,17 +1,16 @@
 # Outstanding Features
 
-## Tier 0: Fix Observable Pattern Implementation
+## Tier 0: Test Coverage Improvements
 
-The engine uses System.Reactive's `BehaviorSubject<T>` to implement state change notifications across Game, Arena, and Grid classes. The current implementation has critical issues including memory leaks from unmanaged subscriptions, lack of resource cleanup, missing error handling, and thread safety concerns.
+Code coverage analysis revealed critical gaps in testing (74.71% line coverage, 44.04% branch coverage). Priority areas for improvement:
 
 **Priority Action Items:**
 
-*   [x] **CRITICAL: Fix Memory Leak** - Store subscription IDisposable in Game.cs:48-56 instead of discarding it
-*   [x] **HIGH: Implement IDisposable** - Add IDisposable interface to Game, Arena, and Grid classes with proper cleanup (completed for Game class)
-*   [ ] **MEDIUM: Add Error Handling** - Implement onError handlers for all observable subscriptions
-*   [ ] **MEDIUM: Fix Test Assertion** - Add missing assertion in ArenaTests.cs:27 to verify readyObserved
-*   [ ] **LOW: Document Observable Lifecycle** - Document when subjects should call OnCompleted()
-*   [ ] **CONSIDER: Evaluate Pattern Choice** - Assess if System.Reactive adds enough value vs. simpler C# events
+*   [ ] **CRITICAL: Add Serialization Tests** - GameSerializationExtensions.cs has 0% coverage (ToJson, FromJson, ToJsonFile, FromJsonFile)
+*   [ ] **HIGH: Add Disposal Tests** - All Dispose() methods untested (Game, Arena, Grid) - memory leak risk
+*   [ ] **MEDIUM: Test Error Paths** - Grid overlap validation (Grid.cs:48-50), out-of-bounds placement, invalid abandon attempts
+*   [ ] **MEDIUM: Improve Branch Coverage** - Test Coords equality operators (==, !=), GridFullException.Message property
+*   [ ] **LOW: Add ManualGrid Tests** - ManualGrid.cs has 0% coverage
 
 ## Tier 1: Game Engine - Action Phase Implementation
 *   [ ] **Attack Logic**: Implement the ability for a player to target a coordinate on the opponent's grid.

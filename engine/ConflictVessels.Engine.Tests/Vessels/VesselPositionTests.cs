@@ -5,6 +5,7 @@ namespace ConflictVessels.Engine.Tests.Vessels;
 
 public class VesselPositionTests
 {
+  [Fact]
   public void VesselPosition_describes_a_position_and_orientation()
   {
     var position = new VesselPosition(1, 2, VesselOrientation.Vertical);
