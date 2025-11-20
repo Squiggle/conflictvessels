@@ -1,4 +1,5 @@
 using System.Reactive.Subjects;
+using System.Text.Json.Serialization;
 using ConflictVessels.Engine.Grids;
 
 namespace ConflictVessels.Engine;
@@ -22,10 +23,25 @@ public class Arena : IDisposable
   public Arena(params Grid[] grids)
   {
     Grids = grids.ToList();
-    Ready = grids.All(grid => grid.Ready);
+    InitializeGridSubscriptions();
+  }
+
+  /// <summary>
+  /// JSON deserialization constructor
+  /// </summary>
+  [JsonConstructor]
+  public Arena(List<Grid> grids)
+  {
+    Grids = grids;
+    InitializeGridSubscriptions();
+  }
+
+  private void InitializeGridSubscriptions()
+  {
+    Ready = Grids.All(grid => grid.Ready);
 
     // Subscribe to each grid's ready state to update Arena ready state
-    foreach (var grid in grids)
+    foreach (var grid in Grids)
     {
       var subscription = grid.ObservableReady.Subscribe(
         onNext: _ => UpdateReadyState(),

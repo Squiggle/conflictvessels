@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Reactive.Subjects;
+using System.Text.Json.Serialization;
 using ConflictVessels.Engine.Vessels;
 
 namespace ConflictVessels.Engine.Grids;
@@ -39,6 +40,27 @@ public class Grid : IDisposable
     Width = width;
     Height = height;
     this.vessels = vessels.Select(v => new VesselGridPlacement(v)).ToList();
+    UpdateReadyState();
+  }
+
+  /// <summary>
+  /// JSON deserialization constructor
+  /// </summary>
+  [JsonConstructor]
+  public Grid(int width, int height, List<VesselGridPlacement> vessels)
+  {
+    Width = width;
+    Height = height;
+    this.vessels = vessels;
+    UpdateReadyState();
+  }
+
+  private void UpdateReadyState()
+  {
+    if (vessels.Count > 0 && vessels.All(v => v.Position != null))
+    {
+      Ready = true;
+    }
   }
 
   /// <summary>Place a vessel on the board</summary>
