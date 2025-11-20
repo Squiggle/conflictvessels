@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using ConflictVessels.Engine.Vessels;
 
 namespace ConflictVessels.Engine.Grids;
@@ -11,6 +12,16 @@ public class VesselGridPlacement
   {
     Vessel = vessel;
     Position = null;
+  }
+
+  /// <summary>
+  /// JSON deserialization constructor
+  /// </summary>
+  [JsonConstructor]
+  public VesselGridPlacement(Vessel vessel, VesselPosition? position)
+  {
+    Vessel = vessel;
+    Position = position;
   }
 
   public void Place(int x, int y, VesselOrientation orientation)

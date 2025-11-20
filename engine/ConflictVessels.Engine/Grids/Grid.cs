@@ -21,7 +21,11 @@ public class Grid : IDisposable
 
   public IObservable<bool> ObservableReady => readySubject;
 
-  private readonly List<VesselGridPlacement> vessels;
+  [JsonInclude]
+  [JsonPropertyName("vessels")]
+  private readonly List<VesselGridPlacement> vessels = new();
+
+  [JsonIgnore]
   public ReadOnlyCollection<VesselGridPlacement> Vessels => vessels.AsReadOnly();
 
   public IEnumerable<Coords> Coords()

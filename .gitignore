@@ -1,3 +1,5 @@
 bin/
 obj/
 TestResults/*
+engine/ConflictVessels.Engine.Tests/TestResults/*
+test_output.log

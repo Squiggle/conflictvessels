@@ -2,12 +2,13 @@ using System;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using ConflictVessels.Engine;
+using ConflictVessels.Engine.Persistence;
 
 namespace ConflictVessels.Engine
 {
     /// <summary>
-    /// Extension methods for serializing Game instances to JSON.
+    /// Extension methods for serializing Game instances to JSON using the snapshot pattern.
+    /// This approach separates serialization concerns from the domain model.
     /// </summary>
     public static class GameSerializationExtensions
     {
@@ -20,12 +21,13 @@ namespace ConflictVessels.Engine
         };
 
         /// <summary>
-        /// Serializes the Game instance to a JSON string.
+        /// Serializes the Game instance to a JSON string using a snapshot.
         /// </summary>
         public static string ToJson(this Game game)
         {
             if (game == null) throw new ArgumentNullException(nameof(game));
-            return JsonSerializer.Serialize(game, Options);
+            var snapshot = game.CreateSnapshot();
+            return JsonSerializer.Serialize(snapshot, Options);
         }
 
         /// <summary>
@@ -40,13 +42,14 @@ namespace ConflictVessels.Engine
         }
 
         /// <summary>
-        /// Deserializes a Game instance from a JSON string.
+        /// Deserializes a Game instance from a JSON string using the snapshot pattern.
         /// </summary>
         public static Game FromJson(string json)
         {
             if (string.IsNullOrWhiteSpace(json)) throw new ArgumentException("JSON must not be null or empty.", nameof(json));
-            return JsonSerializer.Deserialize<Game>(json, Options)
-                ?? throw new InvalidOperationException("Deserialization returned null Game instance.");
+            var snapshot = JsonSerializer.Deserialize<GameSnapshot>(json, Options)
+                ?? throw new InvalidOperationException("Deserialization returned null GameSnapshot instance.");
+            return GamePersistence.RestoreFromSnapshot(snapshot);
         }
 
         /// <summary>

@@ -3,7 +3,6 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Reactive.Subjects;
-using System.Text.Json.Serialization;
 
 public class Game : IDisposable
 {
@@ -45,23 +44,6 @@ public class Game : IDisposable
     this.players = players.ToList();
     Arena = arena;
     PlayerActions = new ObservableCollection<string>();
-
-    InitializeArenaSubscription();
-  }
-
-  /// <summary>
-  /// JSON deserialization constructor
-  /// </summary>
-  [JsonConstructor]
-  public Game(Guid id, GamePhase phase, Arena arena, List<Player> players, ObservableCollection<string>? playerActions)
-  {
-    Id = id;
-    this.players = players;
-    Arena = arena;
-    PlayerActions = playerActions ?? new ObservableCollection<string>();
-
-    // Set phase directly to the backing subject
-    phaseSubject.OnNext(phase);
 
     InitializeArenaSubscription();
   }
