@@ -4,7 +4,7 @@ using ConflictVessels.Engine.Vessels;
 
 namespace ConflictVessels.Engine.Grids;
 
-public class Grid
+public class Grid : IDisposable
 {
   // subjects for observable properties
   private readonly BehaviorSubject<bool> readySubject = new BehaviorSubject<bool>(false);
@@ -68,5 +68,11 @@ public class Grid
       new Vessel(4),
       new Vessel(5)
     });
+  }
+
+  public void Dispose()
+  {
+    readySubject?.OnCompleted();
+    readySubject?.Dispose();
   }
 }

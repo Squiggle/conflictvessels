@@ -46,15 +46,20 @@ public class Game : IDisposable
     PlayerActions = new ObservableCollection<string>();
 
     // toggle Phase based on the readiness of the Arena
-    arenaReadySubscription = arena.ObservableReady.Subscribe(ready =>
-    {
-      if (Active)
+    arenaReadySubscription = arena.ObservableReady.Subscribe(
+      onNext: ready =>
       {
-        Phase = ready
-          ? GamePhase.Action
-          : GamePhase.Setup;
-      }
-    });
+        if (Active)
+        {
+          Phase = ready
+            ? GamePhase.Action
+            : GamePhase.Setup;
+        }
+      },
+      onError: error =>
+      {
+        Console.Error.WriteLine($"Error in arena ready subscription: {error.Message}");
+      });
   }
 
   /// <summary>
@@ -80,6 +85,7 @@ public class Game : IDisposable
   public void Dispose()
   {
     arenaReadySubscription?.Dispose();
+    Arena?.Dispose();
     phaseSubject?.OnCompleted();
     phaseSubject?.Dispose();
   }

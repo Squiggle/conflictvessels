@@ -25,6 +25,9 @@ public class ArenaTests
     arena.ObservableReady.Subscribe(x => readyObserved = x);
     // act
     grid.ReadyUp();
+    // assert
+    Assert.True(readyObserved);
+    Assert.True(arena.Ready);
   }
 
   public class TestGrid : Grid
