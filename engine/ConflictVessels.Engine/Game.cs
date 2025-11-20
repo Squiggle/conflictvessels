@@ -4,11 +4,12 @@ using System;
 using System.Collections.ObjectModel;
 using System.Reactive.Subjects;
 
-public class Game
+public class Game : IDisposable
 {
   private readonly BehaviorSubject<GamePhase> phaseSubject = new BehaviorSubject<GamePhase>(GamePhase.Setup);
 
   private readonly List<Player> players;
+  private IDisposable? arenaReadySubscription;
 
   /// <summary>Identifier</summary>
   public Guid Id { get; init; }
@@ -45,7 +46,7 @@ public class Game
     PlayerActions = new ObservableCollection<string>();
 
     // toggle Phase based on the readiness of the Arena
-    arena.ObservableReady.Subscribe(ready =>
+    arenaReadySubscription = arena.ObservableReady.Subscribe(ready =>
     {
       if (Active)
       {
@@ -74,5 +75,12 @@ public class Game
       throw new ArgumentException("Given Player is not participating in this game");
     }
     Phase = GamePhase.Ended;
+  }
+
+  public void Dispose()
+  {
+    arenaReadySubscription?.Dispose();
+    phaseSubject?.OnCompleted();
+    phaseSubject?.Dispose();
   }
 }
