@@ -8,8 +8,6 @@ public static class GamePersistence
 {
     /// <summary>
     /// Creates a serializable snapshot of the current game state.
-    /// Note: Arena and Players are stored as their serializable representations.
-    /// For now, these use the domain objects directly, but can be replaced with dedicated DTOs later.
     /// </summary>
     public static GameSnapshot CreateSnapshot(this Game game)
     {
@@ -19,7 +17,7 @@ public static class GamePersistence
         {
             Id = game.Id,
             Phase = game.Phase.ToString(),
-            Arena = game.Arena,
+            Arena = game.Arena.CreateSnapshot(),
             Players = game.Players.ToList(),
             PlayerActions = game.PlayerActions.ToList()
         };
@@ -39,9 +37,8 @@ public static class GamePersistence
             throw new InvalidOperationException($"Invalid game phase: {snapshot.Phase}");
         }
 
-        // Use domain objects directly from snapshot
-        // (In the future, Arena and Player will have their own snapshot/restore methods)
-        var arena = snapshot.Arena;
+        // Restore domain objects from snapshots
+        var arena = ArenaPersistence.RestoreFromSnapshot(snapshot.Arena);
         var players = snapshot.Players.ToArray();
 
         // Use the standard constructor which sets up reactive subscriptions

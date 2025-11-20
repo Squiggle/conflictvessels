@@ -12,10 +12,10 @@ public record GameSnapshot
     /// <summary>Current game phase as string for serialization</summary>
     public string Phase { get; init; } = string.Empty;
 
-    /// <summary>Serialized arena state - using Arena directly for now until Arena gets its own snapshot</summary>
-    public Arena Arena { get; init; } = null!;
+    /// <summary>Serialized arena state</summary>
+    public ArenaSnapshot Arena { get; init; } = null!;
 
-    /// <summary>Serialized player list - using Player directly for now until Player gets its own snapshot</summary>
+    /// <summary>Serialized player list - Player is simple enough to serialize directly</summary>
     public List<Player> Players { get; init; } = new();
 
     /// <summary>History of player actions</summary>

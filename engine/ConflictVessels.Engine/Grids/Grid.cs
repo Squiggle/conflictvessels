@@ -1,6 +1,5 @@
 using System.Collections.ObjectModel;
 using System.Reactive.Subjects;
-using System.Text.Json.Serialization;
 using ConflictVessels.Engine.Vessels;
 
 namespace ConflictVessels.Engine.Grids;
@@ -21,11 +20,7 @@ public class Grid : IDisposable
 
   public IObservable<bool> ObservableReady => readySubject;
 
-  [JsonInclude]
-  [JsonPropertyName("vessels")]
-  private readonly List<VesselGridPlacement> vessels = new();
-
-  [JsonIgnore]
+  private readonly List<VesselGridPlacement> vessels;
   public ReadOnlyCollection<VesselGridPlacement> Vessels => vessels.AsReadOnly();
 
   public IEnumerable<Coords> Coords()
@@ -48,10 +43,10 @@ public class Grid : IDisposable
   }
 
   /// <summary>
-  /// JSON deserialization constructor
+  /// Internal constructor for persistence layer.
+  /// Used by GridPersistence.RestoreFromSnapshot to reconstruct Grid with existing placements.
   /// </summary>
-  [JsonConstructor]
-  public Grid(int width, int height, List<VesselGridPlacement> vessels)
+  internal Grid(int width, int height, List<VesselGridPlacement> vessels)
   {
     Width = width;
     Height = height;

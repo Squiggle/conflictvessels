@@ -1,5 +1,4 @@
 using System.Reactive.Subjects;
-using System.Text.Json.Serialization;
 using ConflictVessels.Engine.Grids;
 
 namespace ConflictVessels.Engine;
@@ -23,16 +22,6 @@ public class Arena : IDisposable
   public Arena(params Grid[] grids)
   {
     Grids = grids.ToList();
-    InitializeGridSubscriptions();
-  }
-
-  /// <summary>
-  /// JSON deserialization constructor
-  /// </summary>
-  [JsonConstructor]
-  public Arena(List<Grid> grids)
-  {
-    Grids = grids;
     InitializeGridSubscriptions();
   }
 

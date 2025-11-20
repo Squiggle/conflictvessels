@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using ConflictVessels.Engine.Vessels;
 
 namespace ConflictVessels.Engine.Grids;
@@ -15,10 +14,10 @@ public class VesselGridPlacement
   }
 
   /// <summary>
-  /// JSON deserialization constructor
+  /// Internal constructor for persistence layer.
+  /// Used by VesselGridPlacementPersistence.RestoreFromSnapshot to reconstruct placement with existing position.
   /// </summary>
-  [JsonConstructor]
-  public VesselGridPlacement(Vessel vessel, VesselPosition? position)
+  internal VesselGridPlacement(Vessel vessel, VesselPosition? position)
   {
     Vessel = vessel;
     Position = position;
