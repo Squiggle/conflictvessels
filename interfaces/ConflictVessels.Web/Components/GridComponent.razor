@@ -1,0 +1,64 @@
+@using ConflictVessels.Engine.Grids
+@using ConflictVessels.Engine.Vessels
+
+<div class="game-grid" style="--grid-size: @Grid.Width;">
+    @for (int y = 0; y < Grid.Height; y++)
+    {
+        @for (int x = 0; x < Grid.Width; x++)
+        {
+            var coords = new Coords(x, y);
+            var vessel = GetVesselAtCoords(coords);
+            var cellClass = GetCellClass(vessel);
+            var localX = x;
+            var localY = y;
+
+            <div class="grid-cell @cellClass"
+                 @onclick="() => OnCellClick(localX, localY)"
+                 title="@($"{(char)('A' + x)}{y + 1}")">
+                @if (ShowVessels && vessel != null)
+                {
+                    <div class="vessel-marker"></div>
+                }
+            </div>
+        }
+    }
+</div>
+
+@code {
+    [Parameter]
+    public Grid Grid { get; set; } = null!;
+
+    [Parameter]
+    public bool ShowVessels { get; set; } = true;
+
+    [Parameter]
+    public EventCallback<Coords> OnCellClicked { get; set; }
+
+    private Vessel? GetVesselAtCoords(Coords coords)
+    {
+        foreach (var placement in Grid.Vessels)
+        {
+            if (placement.Position != null && placement.Coords.Any(c => c.X == coords.X && c.Y == coords.Y))
+            {
+                return placement.Vessel;
+            }
+        }
+        return null;
+    }
+
+    private string GetCellClass(Vessel? vessel)
+    {
+        if (vessel == null)
+            return "empty";
+
+        return "occupied";
+    }
+
+    private async Task OnCellClick(int x, int y)
+    {
+        if (OnCellClicked.HasDelegate)
+        {
+            await OnCellClicked.InvokeAsync(new Coords(x, y));
+        }
+    }
+}

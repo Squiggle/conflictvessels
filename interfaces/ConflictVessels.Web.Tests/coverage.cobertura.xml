@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<coverage line-rate="0.4054" branch-rate="0.2857" version="1.9" timestamp="1764410853" lines-covered="30" lines-valid="74" branches-covered="8" branches-valid="28">
+  <sources>
+    <source>/Users/jonathan.gilroy-powell/Documents/Code/squiggle/conflictvessels/interfaces/ConflictVessels.Web/</source>
+  </sources>
+  <packages>
+    <package name="ConflictVessels.Web" line-rate="0.4054" branch-rate="0.2857" complexity="36">
+      <classes>
+        <class name="Program/&lt;&lt;Main&gt;$&gt;d__0" filename="Program.cs" line-rate="0" branch-rate="1" complexity="1">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="6" hits="0" branch="False" />
+                <line number="7" hits="0" branch="False" />
+                <line number="8" hits="0" branch="False" />
+                <line number="10" hits="0" branch="False" />
+                <line number="11" hits="0" branch="False" />
+                <line number="13" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="6" hits="0" branch="False" />
+            <line number="7" hits="0" branch="False" />
+            <line number="8" hits="0" branch="False" />
+            <line number="10" hits="0" branch="False" />
+            <line number="11" hits="0" branch="False" />
+            <line number="13" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="ConflictVessels.Web.Components.GridComponent" filename="Components/GridComponent.razor" line-rate="0" branch-rate="0" complexity="21">
+          <methods>
+            <method name="BuildRenderTree" signature="(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)" line-rate="0" branch-rate="0" complexity="8">
+              <lines>
+                <line number="5" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="373" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="6" hits="0" branch="False" />
+                <line number="7" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="345" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="8" hits="0" branch="False" />
+                <line number="9" hits="0" branch="False" />
+                <line number="10" hits="0" branch="False" />
+                <line number="11" hits="0" branch="False" />
+                <line number="12" hits="0" branch="False" />
+                <line number="13" hits="0" branch="False" />
+                <line number="18" hits="0" branch="True" condition-coverage="0% (0/4)">
+                  <conditions>
+                    <condition number="284" type="jump" coverage="0%" />
+                    <condition number="298" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="19" hits="0" branch="False" />
+                <line number="21" hits="0" branch="False" />
+                <line number="23" hits="0" branch="False" />
+                <line number="24" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Grid" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="29" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_ShowVessels" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="32" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_OnCellClicked" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="35" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="GetVesselAtCoords" signature="(ConflictVessels.Engine.Grids.Coords)" line-rate="0" branch-rate="0" complexity="8">
+              <lines>
+                <line number="38" hits="0" branch="False" />
+                <line number="39" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="119" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="40" hits="0" branch="False" />
+                <line number="41" hits="0" branch="True" condition-coverage="0% (0/6)">
+                  <conditions>
+                    <condition number="48" type="jump" coverage="0%" />
+                    <condition number="63" type="jump" coverage="0%" />
+                    <condition number="99" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="42" hits="0" branch="False" />
+                <line number="43" hits="0" branch="False" />
+                <line number="45" hits="0" branch="False" />
+                <line number="46" hits="0" branch="False" />
+                <line number="47" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="GetCellClass" signature="(ConflictVessels.Engine.Vessels.Vessel)" line-rate="0" branch-rate="0" complexity="2">
+              <lines>
+                <line number="50" hits="0" branch="False" />
+                <line number="51" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="7" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="52" hits="0" branch="False" />
+                <line number="54" hits="0" branch="False" />
+                <line number="55" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="5" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="373" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="6" hits="0" branch="False" />
+            <line number="7" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="345" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="8" hits="0" branch="False" />
+            <line number="9" hits="0" branch="False" />
+            <line number="10" hits="0" branch="False" />
+            <line number="11" hits="0" branch="False" />
+            <line number="12" hits="0" branch="False" />
+            <line number="13" hits="0" branch="False" />
+            <line number="18" hits="0" branch="True" condition-coverage="0% (0/4)">
+              <conditions>
+                <condition number="284" type="jump" coverage="0%" />
+                <condition number="298" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="19" hits="0" branch="False" />
+            <line number="21" hits="0" branch="False" />
+            <line number="23" hits="0" branch="False" />
+            <line number="24" hits="0" branch="False" />
+            <line number="29" hits="0" branch="False" />
+            <line number="32" hits="0" branch="False" />
+            <line number="35" hits="0" branch="False" />
+            <line number="38" hits="0" branch="False" />
+            <line number="39" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="119" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="40" hits="0" branch="False" />
+            <line number="41" hits="0" branch="True" condition-coverage="0% (0/6)">
+              <conditions>
+                <condition number="48" type="jump" coverage="0%" />
+                <condition number="63" type="jump" coverage="0%" />
+                <condition number="99" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="42" hits="0" branch="False" />
+            <line number="43" hits="0" branch="False" />
+            <line number="45" hits="0" branch="False" />
+            <line number="46" hits="0" branch="False" />
+            <line number="47" hits="0" branch="False" />
+            <line number="50" hits="0" branch="False" />
+            <line number="51" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="7" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="52" hits="0" branch="False" />
+            <line number="54" hits="0" branch="False" />
+            <line number="55" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="ConflictVessels.Web.Components.GridComponent/&lt;&gt;c__DisplayClass0_0" filename="Components/GridComponent.razor" line-rate="0" branch-rate="1" complexity="1">
+          <methods>
+            <method name="&lt;BuildRenderTree&gt;b__0" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="16" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="16" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="ConflictVessels.Web.Components.GridComponent/&lt;OnCellClick&gt;d__15" filename="Components/GridComponent.razor" line-rate="0" branch-rate="0" complexity="2">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="2">
+              <lines>
+                <line number="58" hits="0" branch="False" />
+                <line number="59" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="36" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="60" hits="0" branch="False" />
+                <line number="61" hits="0" branch="False" />
+                <line number="62" hits="0" branch="False" />
+                <line number="63" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="58" hits="0" branch="False" />
+            <line number="59" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="36" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="60" hits="0" branch="False" />
+            <line number="61" hits="0" branch="False" />
+            <line number="62" hits="0" branch="False" />
+            <line number="63" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="ConflictVessels.Web.Services.GameService" filename="Services/GameService.cs" line-rate="1" branch-rate="1" complexity="11">
+          <methods>
+            <method name="get_CurrentGame" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="11" hits="33" branch="False" />
+              </lines>
+            </method>
+            <method name="StartNewGame" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="14" hits="22" branch="False" />
+                <line number="15" hits="22" branch="False" />
+                <line number="18" hits="22" branch="False" />
+                <line number="19" hits="22" branch="False" />
+                <line number="20" hits="22" branch="False" />
+                <line number="21" hits="22" branch="False" />
+                <line number="22" hits="22" branch="False" />
+                <line number="23" hits="22" branch="False" />
+                <line number="24" hits="22" branch="False" />
+                <line number="25" hits="22" branch="False" />
+                <line number="27" hits="22" branch="False" />
+                <line number="28" hits="22" branch="False" />
+                <line number="30" hits="22" branch="False" />
+                <line number="31" hits="22" branch="False" />
+                <line number="32" hits="22" branch="False" />
+                <line number="34" hits="22" branch="False" />
+                <line number="35" hits="22" branch="False" />
+              </lines>
+            </method>
+            <method name="GetPlayerGrid" signature="(System.Int32)" line-rate="1" branch-rate="1" complexity="6">
+              <lines>
+                <line number="38" hits="7" branch="False" />
+                <line number="39" hits="7" branch="True" condition-coverage="100% (6/6)">
+                  <conditions>
+                    <condition number="7" type="jump" coverage="100%" />
+                    <condition number="11" type="jump" coverage="100%" />
+                    <condition number="45" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="40" hits="3" branch="False" />
+                <line number="42" hits="4" branch="False" />
+                <line number="43" hits="7" branch="False" />
+              </lines>
+            </method>
+            <method name="DisposeCurrentGame" signature="()" line-rate="1" branch-rate="1" complexity="2">
+              <lines>
+                <line number="46" hits="29" branch="False" />
+                <line number="47" hits="29" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="8" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="48" hits="29" branch="False" />
+                <line number="49" hits="29" branch="False" />
+              </lines>
+            </method>
+            <method name="Dispose" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="52" hits="7" branch="False" />
+                <line number="53" hits="7" branch="False" />
+                <line number="54" hits="7" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="11" hits="33" branch="False" />
+            <line number="14" hits="22" branch="False" />
+            <line number="15" hits="22" branch="False" />
+            <line number="18" hits="22" branch="False" />
+            <line number="19" hits="22" branch="False" />
+            <line number="20" hits="22" branch="False" />
+            <line number="21" hits="22" branch="False" />
+            <line number="22" hits="22" branch="False" />
+            <line number="23" hits="22" branch="False" />
+            <line number="24" hits="22" branch="False" />
+            <line number="25" hits="22" branch="False" />
+            <line number="27" hits="22" branch="False" />
+            <line number="28" hits="22" branch="False" />
+            <line number="30" hits="22" branch="False" />
+            <line number="31" hits="22" branch="False" />
+            <line number="32" hits="22" branch="False" />
+            <line number="34" hits="22" branch="False" />
+            <line number="35" hits="22" branch="False" />
+            <line number="38" hits="7" branch="False" />
+            <line number="39" hits="7" branch="True" condition-coverage="100% (6/6)">
+              <conditions>
+                <condition number="7" type="jump" coverage="100%" />
+                <condition number="11" type="jump" coverage="100%" />
+                <condition number="45" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="40" hits="3" branch="False" />
+            <line number="42" hits="4" branch="False" />
+            <line number="43" hits="7" branch="False" />
+            <line number="46" hits="29" branch="False" />
+            <line number="47" hits="29" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="8" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="48" hits="29" branch="False" />
+            <line number="49" hits="29" branch="False" />
+            <line number="52" hits="7" branch="False" />
+            <line number="53" hits="7" branch="False" />
+            <line number="54" hits="7" branch="False" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+  </packages>
+</coverage>

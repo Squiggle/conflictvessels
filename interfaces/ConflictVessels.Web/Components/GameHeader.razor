@@ -1,0 +1,22 @@
+@using ConflictVessels.Engine
+
+<div class="game-info">
+    <div class="phase-indicator phase-@Phase.ToString().ToLower()">
+        Phase: @Phase
+    </div>
+    <button class="btn-secondary" @onclick="OnNewGame">New Game</button>
+</div>
+
+@code {
+    /// <summary>
+    /// The current game phase to display.
+    /// </summary>
+    [Parameter]
+    public GamePhase Phase { get; set; }
+
+    /// <summary>
+    /// Callback invoked when the New Game button is clicked.
+    /// </summary>
+    [Parameter]
+    public EventCallback OnNewGame { get; set; }
+}

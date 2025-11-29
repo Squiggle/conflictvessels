@@ -4,7 +4,7 @@ test:
 	dotnet test
 
 coverage:
-	dotnet test engine/ConflictVessels.Engine.Tests -p:CollectCoverage=true -p:CoverletOutputFormat=teamcity
+	dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=teamcity
 
 build:
 	dotnet build

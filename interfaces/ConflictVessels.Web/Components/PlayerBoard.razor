@@ -1,0 +1,20 @@
+@using ConflictVessels.Engine.Grids
+
+<div class="player-board">
+    <h2>Player @PlayerNumber</h2>
+    <GridComponent Grid="@Grid" ShowVessels="true" />
+</div>
+
+@code {
+    /// <summary>
+    /// The player number to display (1-indexed).
+    /// </summary>
+    [Parameter]
+    public int PlayerNumber { get; set; }
+
+    /// <summary>
+    /// The grid to display for this player.
+    /// </summary>
+    [Parameter]
+    public Grid Grid { get; set; } = null!;
+}

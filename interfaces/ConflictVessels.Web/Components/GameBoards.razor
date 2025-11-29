@@ -1,0 +1,23 @@
+@using ConflictVessels.Engine.Grids
+
+<div class="game-boards">
+    @if (Player1Grid != null && Player2Grid != null)
+    {
+        <PlayerBoard PlayerNumber="1" Grid="@Player1Grid" />
+        <PlayerBoard PlayerNumber="2" Grid="@Player2Grid" />
+    }
+</div>
+
+@code {
+    /// <summary>
+    /// The grid for player 1.
+    /// </summary>
+    [Parameter]
+    public Grid? Player1Grid { get; set; }
+
+    /// <summary>
+    /// The grid for player 2.
+    /// </summary>
+    [Parameter]
+    public Grid? Player2Grid { get; set; }
+}

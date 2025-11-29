@@ -1,0 +1,83 @@
+@page "/game"
+@using ConflictVessels.Engine
+@using ConflictVessels.Engine.Grids
+@using ConflictVessels.Web.Components
+@using ConflictVessels.Web.Services
+@using System.Reactive.Linq
+@inject GameService GameService
+@implements IDisposable
+
+<div class="game-container">
+    @if (GameService.CurrentGame == null)
+    {
+        <div class="game-setup">
+            <h1>Conflict Vessels</h1>
+            <button class="btn-primary" @onclick="StartNewGame">Start New Game</button>
+        </div>
+    }
+    else
+    {
+        <GameHeader Phase="@currentPhase" OnNewGame="StartNewGame" />
+        <GameBoards Player1Grid="@player1Grid" Player2Grid="@player2Grid" />
+    }
+</div>
+
+@code {
+    private GamePhase currentPhase = GamePhase.Setup;
+    private Grid? player1Grid;
+    private Grid? player2Grid;
+    private readonly List<IDisposable> subscriptions = [];
+
+    protected override void OnInitialized()
+    {
+        SubscribeToGameState();
+    }
+
+    private void SubscribeToGameState()
+    {
+        // Clean existing subscriptions
+        foreach (var sub in subscriptions)
+        {
+            sub.Dispose();
+        }
+        subscriptions.Clear();
+
+        var game = GameService.CurrentGame;
+        if (game == null)
+            return;
+
+        // Subscribe to phase changes with thread marshalling for UI updates
+        var phaseSub = game.ObservablePhase
+            @* .ObserveOn(SynchronizationContext.Current!) *@
+            .Subscribe(phase =>
+            {
+                currentPhase = phase;
+                StateHasChanged();
+            });
+        subscriptions.Add(phaseSub);
+
+        // Load grid references
+        player1Grid = game.Arena.Grids[0];
+        player2Grid = game.Arena.Grids[1];
+
+        // Set initial phase
+        currentPhase = game.Phase;
+
+        StateHasChanged();
+    }
+
+    private void StartNewGame()
+    {
+        GameService.StartNewGame();
+        SubscribeToGameState();
+    }
+
+    public void Dispose()
+    {
+        foreach (var subscription in subscriptions)
+        {
+            subscription.Dispose();
+        }
+        subscriptions.Clear();
+    }
+}

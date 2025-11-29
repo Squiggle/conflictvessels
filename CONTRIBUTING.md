@@ -309,9 +309,15 @@ public static class GameSerializationExtensions
 
 ### Framework and Structure
 
+**⚠️ MANDATORY**: All new code requires unit tests with **minimum 95% code coverage**. No exceptions.
+
 - Use **xUnit** for all tests
-- Organize tests in a separate project: `ConflictVessels.Engine.Tests`
+- Use **bUnit** for Blazor component tests
+- Organize tests in separate test projects:
+  - `ConflictVessels.Engine.Tests` - Engine tests
+  - `ConflictVessels.Web.Tests` - Web interface tests
 - Mirror the source folder structure in test project
+- Run `make coverage` to verify coverage before submitting code
 
 ### Test Naming
 
@@ -379,6 +385,31 @@ Assert.NotNull(obj);
 Assert.NotEqual(Guid.Empty, game.Id);
 Assert.Empty(collection);
 ```
+
+### Code Coverage Requirements
+
+**All new code must achieve minimum 95% code coverage.**
+
+To verify coverage:
+
+```bash
+make coverage
+```
+
+The coverage report will be generated in `coverage/` directory. Review the HTML report to identify any untested code paths.
+
+**Coverage Guidelines:**
+- Test all public methods
+- Test edge cases and boundary conditions
+- Test error handling paths
+- Test observable subscriptions and state changes
+- Exclude only truly untestable code (e.g., third-party library quirks)
+
+**If coverage is below 95%:**
+1. Identify uncovered lines in the HTML report
+2. Add tests for those code paths
+3. Re-run coverage analysis
+4. Repeat until ≥95% coverage achieved
 
 ## Documentation
 
@@ -484,6 +515,7 @@ When the project adopts PRs:
 
 When reviewing code, check for:
 
+- [ ] **Tests exist with ≥95% code coverage** (run `make coverage` to verify)
 - [ ] Follows naming conventions
 - [ ] Properties use appropriate access modifiers (init, private set)
 - [ ] Collections exposed as ReadOnly
